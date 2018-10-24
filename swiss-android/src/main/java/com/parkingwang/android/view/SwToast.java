@@ -15,8 +15,8 @@ import android.widget.Toast;
 import com.parkingwang.android.R;
 
 /**
- * @author  YOOJIA.CHEN (yoojia.chen@gmail.com)
- * @since   1.0
+ * @author YOOJIA.CHEN (yoojia.chen@gmail.com)
+ * @since 1.0
  */
 public class SwToast {
 
@@ -42,6 +42,7 @@ public class SwToast {
 
     /**
      * 设置提示样式
+     *
      * @param style 样式
      */
     public void setStyle(Style style) {
@@ -50,8 +51,9 @@ public class SwToast {
 
     /**
      * 指定图标资源ID，显示长时间的提示信息
+     *
      * @param iconResId 图标资源ID
-     * @param message 提示信息内容
+     * @param message   提示信息内容
      */
     public void showLong(int iconResId, String message) {
         show(iconResId, message, Toast.LENGTH_LONG);
@@ -59,6 +61,7 @@ public class SwToast {
 
     /**
      * 显示长时间的提示信息
+     *
      * @param message 提示信息内容
      */
     public void showLong(String message) {
@@ -67,6 +70,7 @@ public class SwToast {
 
     /**
      * 显示长时间的提示信息
+     *
      * @param message 提示信息内容
      */
     public void showLong(int message) {
@@ -75,8 +79,9 @@ public class SwToast {
 
     /**
      * 指定图标资源ID，显示短时间的提示信息
+     *
      * @param iconResId 图标资源ID
-     * @param message 提示信息内容
+     * @param message   提示信息内容
      */
     public void show(int iconResId, String message) {
         show(iconResId, message, Toast.LENGTH_SHORT);
@@ -84,6 +89,7 @@ public class SwToast {
 
     /**
      * 使用创建NextToast指定类型的图标资源ID，显示短时间的提示信息
+     *
      * @param message 提示信息内容
      */
     public void show(String message) {
@@ -92,6 +98,7 @@ public class SwToast {
 
     /**
      * 使用创建NextToast指定类型的图标资源ID，显示短时间的提示信息
+     *
      * @param message 提示信息内容
      */
     public void show(int message) {
@@ -100,50 +107,55 @@ public class SwToast {
 
     /**
      * 创建一个无图标的NextToast
+     *
      * @param context Context
      * @return NextToast
      */
-    public static SwToast tip(Context context){
+    public static SwToast tip(Context context) {
         return new SwToast(context, Style.TIP);
     }
 
     /**
      * 创建一个对号图标的NextToast
+     *
      * @param context Context
      * @return NextToast
      */
-    public static SwToast success(Context context){
+    public static SwToast success(Context context) {
         return new SwToast(context, Style.SUCCESS);
     }
 
     /**
      * 创建一个叉号图标的NextToast
+     *
      * @param context Context
      * @return NextToast
      */
-    public static SwToast failed(Context context){
+    public static SwToast failed(Context context) {
         return new SwToast(context, Style.FAILED);
     }
 
     /**
      * 创建一个叹号图标的NextToast
+     *
      * @param context Context
      * @return NextToast
      */
-    public static SwToast warning(Context context){
+    public static SwToast warning(Context context) {
         return new SwToast(context, Style.WARNING);
     }
 
     private void show(final int iconResId, final String message, final int duration) {
         final Runnable task = new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 if (iconResId != 0) {
                     mIcon.setVisibility(View.VISIBLE);
                     mIcon.setImageResource(iconResId);
-                }else{
+                } else {
                     mIcon.setVisibility(View.GONE);
                 }
-                if ( ! TextUtils.isEmpty(message)) {
+                if (!TextUtils.isEmpty(message)) {
                     mMessage.setText(message);
                 }
                 mToast.setDuration(duration);
@@ -153,20 +165,19 @@ public class SwToast {
         };
         if (Looper.getMainLooper() == Looper.myLooper()) {
             task.run();
-        }else{
+        } else {
             mHandler.post(task);
         }
     }
 
-    public enum Style{
+    public enum Style {
         TIP(0),
 
         SUCCESS(R.drawable.sw_icon_success),
 
         FAILED(R.drawable.sw_icon_failed),
 
-        WARNING(R.drawable.sw_icon_warning)
-        ;
+        WARNING(R.drawable.sw_icon_warning);
         private final int resId;
 
         Style(int resId) {

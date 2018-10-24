@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.parkingwang.android.R;
 
 /**
- * @author  YOOJIA.CHEN (yoojia.chen@gmail.com)
- * @since   1.0
+ * @author YOOJIA.CHEN (yoojia.chen@gmail.com)
+ * @since 1.0
  */
 public class SwLoading extends Dialog {
 
@@ -46,15 +46,15 @@ public class SwLoading extends Dialog {
         setContentView(R.layout.sw_progress);
         setCancelable(false);
         mHandler = new Handler();
-        mMessage = (TextView) findViewById(R.id.message);
+        mMessage = findViewById(R.id.message);
     }
 
-    public SwLoading setMessage(int msg){
+    public SwLoading setMessage(int msg) {
         mMessageId = msg;
         return this;
     }
 
-    public SwLoading setMessage(CharSequence msg){
+    public SwLoading setMessage(CharSequence msg) {
         mMessageText = msg;
         return this;
     }
@@ -96,7 +96,7 @@ public class SwLoading extends Dialog {
     public void show() {
         if (Looper.myLooper() == Looper.getMainLooper()) {
             showOnMainThread();
-        }else{
+        } else {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
@@ -106,16 +106,16 @@ public class SwLoading extends Dialog {
         }
     }
 
-    private void showOnMainThread(){
+    private void showOnMainThread() {
         if (mMessageId != 0) {
             mMessage.setText(mMessageId);
-        }else{
+        } else {
             mMessage.setText(mMessageText);
         }
         super.show();
     }
 
-    public static SwLoading create(Context context){
+    public static SwLoading create(Context context) {
         return new SwLoading(context);
     }
 

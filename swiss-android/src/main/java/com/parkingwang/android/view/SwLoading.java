@@ -1,9 +1,11 @@
 package com.parkingwang.android.view;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.widget.TextView;
 
 import com.parkingwang.android.R;
@@ -109,13 +111,15 @@ public class SwLoading extends Dialog {
     private void showOnMainThread() {
         if (mMessageId != 0) {
             mMessage.setText(mMessageId);
-        } else {
+        } else if (mMessageText != null) {
             mMessage.setText(mMessageText);
+        } else {
+            mMessage.setVisibility(View.GONE);
         }
         super.show();
     }
 
-    public static SwLoading create(Context context) {
+    public static SwLoading create(Activity context) {
         return new SwLoading(context);
     }
 

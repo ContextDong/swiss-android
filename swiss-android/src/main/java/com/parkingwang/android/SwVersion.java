@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 
 
-public class Version {
+public class SwVersion {
 
     /**
      * 主版本
@@ -31,7 +31,7 @@ public class Version {
 
     public final String name;
 
-    public Version(int major, int minor, int revision, int build, String name) {
+    public SwVersion(int major, int minor, int revision, int build, String name) {
         this.major = major;
         this.minor = minor;
         this.revision = revision;
@@ -39,7 +39,7 @@ public class Version {
         this.name = name;
     }
 
-    public boolean isLowerThan(Version version) {
+    public boolean isLowerThan(SwVersion version) {
         if (version == null) {
             return false;
         }
@@ -71,7 +71,7 @@ public class Version {
             return false;
         }
 
-        Version version = (Version) o;
+        SwVersion version = (SwVersion) o;
 
         if (major != version.major) {
             return false;
@@ -102,7 +102,7 @@ public class Version {
     private static final String VERSION_REGEX = "(\\d+)(?:\\.(\\d+)(?:\\.(\\d+)(?:\\.(\\d+))?)?)?.*";
     private static final Pattern sVersionPatter = Pattern.compile(VERSION_REGEX);
 
-    public static Version parse(String version) {
+    public static SwVersion parse(String version) {
         if (version == null) {
             return null;
         }
@@ -132,7 +132,7 @@ public class Version {
             if (s != null) {
                 build = Integer.parseInt(s);
             }
-            return new Version(major, minor, revision, build, version);
+            return new SwVersion(major, minor, revision, build, version);
         } else {
             return null;
         }

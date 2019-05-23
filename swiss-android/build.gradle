@@ -1,24 +1,5 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.5.4"
-    }
-}
-
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.jfrog.artifactory'
-
-group = GROUP
-
-boolean isReleaseBuild = gradle.startParameter.taskNames.contains('bintrayUpload')
-version = isReleaseBuild ? VERSION_NAME : "$VERSION_NAME-SNAPSHOT"
-logger.info("Using version=$project.version")
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 26
@@ -29,8 +10,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -38,83 +19,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-apply from: "$rootDir/gradle/artifacts.gradle"
-
-install {
-    repositories.mavenInstaller.pom.project {
-        name POM_NAME
-        description POM_DESCRIPTION
-        packaging POM_PACKAGING
-        url POM_URL
-
-        licenses {
-            license {
-                name POM_LICENCE_NAME
-                url POM_LICENCE_URL
-                distribution POM_LICENCE_DIST
-            }
-        }
-
-        scm {
-            url POM_SCM_URL
-            connection POM_SCM_CONNECTION
-            developerConnection POM_SCM_DEV_CONNECTION
-        }
-
-        developers {
-            developer {
-                id 'yoojia'
-                name 'Yoojia Chen'
-            }
-        }
-    }
+publish {
+    userOrg = 'dongmiansheng'      //bintray注册的用户名
+    repoName = 'public'
+    groupId = 'com.cherry.tools'         //compile引用时的第1部分groupId
+    artifactId = 'swiss-android'     //compile引用时的第2部分项目名
+    publishVersion = '0.0.4'    //compile引用时的第3部分版本号
+    desc = 'This is a android tool library'
+    website = 'https://github.com/ContextDong/swiss-android'
 }
 
-artifactory {
-    contextUrl = 'https://oss.jfrog.org'
-
-    publish {
-        repository {
-            repoKey = 'oss-snapshot-local'
-
-            if (project.hasProperty('bintrayUser')) {
-                username = project.property('bintrayUser')
-                password = project.property('bintrayKey')
-            }
-        }
-
-        defaults {
-            publishConfigs('archives')
-        }
-    }
-}
-
-// Configure gradle-bintray-plugin (for publishing releases)
-bintray {
-    configurations = ['archives']
-
-    publish = true
-
-    pkg {
-        repo = 'maven'
-        name = PRO_NAME
-        userOrg = 'parkingwang'
-        licenses = ['Apache-2.0']
-        labels = ['Android', 'tookit', 'tool']
-        websiteUrl = POM_URL
-        issueTrackerUrl = POM_ISSUES_URL
-        vcsUrl = POM_SCM_URL
-    }
-}
-
-if (project.hasProperty('bintrayUser') && project.hasProperty('bintrayKey')) {
-    bintray.user = project.bintrayUser
-    bintray.key = project.bintrayKey
-}
-
-if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
-    def sync = bintray.pkg.version.mavenCentralSync
-    sync.sync = true
-    sync.user = project.sonatypeUsername
-    sync.password = project.sonatypePassword
-}

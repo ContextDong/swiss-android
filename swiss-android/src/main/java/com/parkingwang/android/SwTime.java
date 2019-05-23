@@ -126,15 +126,6 @@ public class SwTime {
      *
      * @param strDate 要判断的时间
      * @return dayForWeek 判断结果   -1 不存在 ,从1到7开始分别表示从星期天到星期六
-     * <ul>
-     * <li>{@link Calendar#SUNDAY}<li/>
-     * <li>{@link Calendar#MONDAY}<li/>
-     * <li>{@link Calendar#TUESDAY}<li/>
-     * <li>{@link Calendar#WEDNESDAY}<li/>
-     * <li>{@link Calendar#THURSDAY}<li/>
-     * <li>{@link Calendar#FRIDAY}<li/>
-     * <li>{@link Calendar#SATURDAY}<li/>
-     * <ul/>
      */
     public static int stringForWeek(String strDate, SafeSimpleDateFormat format) {
         Date date = format.parse(strDate);
@@ -151,15 +142,6 @@ public class SwTime {
      *
      * @param milliSecond 要判断的毫秒时间
      * @return dayForWeek 判断结果   -1 不存在 ,从1到7开始分别表示从星期天到星期六
-     * <ul>
-     * <li>{@link Calendar#SUNDAY}<li/>
-     * <li>{@link Calendar#MONDAY}<li/>
-     * <li>{@link Calendar#TUESDAY}<li/>
-     * <li>{@link Calendar#WEDNESDAY}<li/>
-     * <li>{@link Calendar#THURSDAY}<li/>
-     * <li>{@link Calendar#FRIDAY}<li/>
-     * <li>{@link Calendar#SATURDAY}<li/>
-     * <ul/>
      */
     public static int milliSecondForWeek(long milliSecond) {
         Calendar c = SafeCalendar.INSTANCE.initialValue();

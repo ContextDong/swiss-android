@@ -41,12 +41,8 @@ public class MainActivity extends AppCompatActivity {
 ## 依赖
 
 ````gradle
-repositories {
-    maven { url "https://dl.bintray.com/parkingwang/maven" }
-}
-
 dependencies {
-    compile 'com.parkingwang:swiss-android:0.0.3-ALPHA'
+    implementation 'com.cherry.tools:swiss-android:0.0.4'
 }
 
 ```

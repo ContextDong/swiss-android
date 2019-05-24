@@ -1,6 +1,6 @@
 package com.parkingwang.android;
 
-import android.content.Context;
+import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
@@ -17,40 +17,83 @@ public class SwDim {
     /**
      * 得到设备屏幕的宽度
      */
-    public static int getScreenWidths(Context context) {
-        return context.getResources().getDisplayMetrics().widthPixels;
+    public static int getScreenWidths() {
+        return SwResource.getResource().getDisplayMetrics().widthPixels;
     }
 
     /**
      * 得到设备屏幕的高度
      */
-    public static int getScreenHeights(Context context) {
-        return context.getResources().getDisplayMetrics().heightPixels;
+    public static int getScreenHeights() {
+        return SwResource.getResource().getDisplayMetrics().heightPixels;
     }
 
     /**
      * 获取DisplayMetrics对象
      *
-     * @param context
      * @return
      */
-    public static DisplayMetrics getDisplayMetrics(Context context) {
-        return context.getResources().getDisplayMetrics();
+    public static DisplayMetrics getDisplayMetrics() {
+        return SwResource.getResource().getDisplayMetrics();
     }
 
     /**
      * 得到设备屏幕的密度
      */
-    public static float getScreenDensity(Context context) {
-        return getDisplayMetrics(context).density;
+    public static float getScreenDensity() {
+        return getDisplayMetrics().density;
     }
 
-    public static float dp2px(Context context, float dpValue) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, getDisplayMetrics(context));
+    public static float dp2pxF(float dpValue) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, getDisplayMetrics());
     }
 
-    public static float sp2px(Context context, float spValue) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, getDisplayMetrics(context));
+    public static float sp2pxF(float spValue) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, getDisplayMetrics());
+    }
+
+    /**
+     * Value of dp to value of px.
+     *
+     * @param dpValue The value of dp.
+     * @return value of px
+     */
+    public static int dp2px(final float dpValue) {
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * Value of px to value of dp.
+     *
+     * @param pxValue The value of px.
+     * @return value of dp
+     */
+    public static int px2dp(final float pxValue) {
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+    /**
+     * Value of sp to value of px.
+     *
+     * @param spValue The value of sp.
+     * @return value of px
+     */
+    public static int sp2px(final float spValue) {
+        final float fontScale = Resources.getSystem().getDisplayMetrics().scaledDensity;
+        return (int) (spValue * fontScale + 0.5f);
+    }
+
+    /**
+     * Value of px to value of sp.
+     *
+     * @param pxValue The value of px.
+     * @return value of sp
+     */
+    public static int px2sp(final float pxValue) {
+        final float fontScale = Resources.getSystem().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontScale + 0.5f);
     }
 
 }

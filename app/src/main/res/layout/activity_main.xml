@@ -8,6 +8,11 @@
     android:padding="16dp"
     tools:context="com.parkingwang.android.app.MainActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="keyboardUtil"
+        android:text="软键盘工具类"/>
 
     <Button
         android:id="@+id/success_tip"

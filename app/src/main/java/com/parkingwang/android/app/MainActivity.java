@@ -1,5 +1,6 @@
 package com.parkingwang.android.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -70,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         SwLoading loading = SwLoading.create(this);
         loading.show();
         return loading;
+    }
+
+    public void keyboardUtil(final View view) {
+        startActivity(new Intent(this, KeyboardActivity.class));
     }
 
 

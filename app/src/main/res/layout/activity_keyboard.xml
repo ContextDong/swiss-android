@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showKeyboard"
+        android:text="显示软键盘"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="hideKeyboard"
+        android:text="隐藏软键盘"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showInputDialog"
+        android:textAllCaps="false"
+        android:text="显示带有editText的对话框"
+        />
+    <Button
+        android:id="@+id/btn_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试点击这块区域软键盘不隐藏"
+        />
+
+    <EditText
+        android:id="@+id/et_no_hide"
+        android:hint="点击外部区域不隐藏软键盘"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/et_hide"
+        android:hint="点击外部区域隐藏软键盘"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.parkingwang.android.SwDoubleClick;
+import com.parkingwang.android.app.bar.BarActivity;
 import com.parkingwang.android.view.SwLoading;
 import com.parkingwang.android.view.SwToast;
 
@@ -75,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void keyboardUtil(final View view) {
         startActivity(new Intent(this, KeyboardActivity.class));
+    }
+
+    public void barUtil(final View view) {
+        startActivity(new Intent(this, BarActivity.class));
     }
 
 

@@ -161,7 +161,7 @@ public class SwDevice {
      * 判断是否为小米
      */
     public static boolean isXiaomi() {
-        return Build.BRAND.toLowerCase().contains("xiaomi");
+        return Build.BRAND.toLowerCase().contains("xiaomi") || isMIUI();
     }
 
 

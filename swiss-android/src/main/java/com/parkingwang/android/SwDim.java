@@ -1,6 +1,5 @@
 package com.parkingwang.android;
 
-import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
@@ -59,7 +58,7 @@ public class SwDim {
      * @return value of px
      */
     public static int dp2px(final float dpValue) {
-        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        final float scale = SwResource.getResource().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 
@@ -70,7 +69,7 @@ public class SwDim {
      * @return value of dp
      */
     public static int px2dp(final float pxValue) {
-        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        final float scale = SwResource.getResource().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
 
@@ -81,7 +80,7 @@ public class SwDim {
      * @return value of px
      */
     public static int sp2px(final float spValue) {
-        final float fontScale = Resources.getSystem().getDisplayMetrics().scaledDensity;
+        final float fontScale = SwResource.getResource().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
 
@@ -92,7 +91,7 @@ public class SwDim {
      * @return value of sp
      */
     public static int px2sp(final float pxValue) {
-        final float fontScale = Resources.getSystem().getDisplayMetrics().scaledDensity;
+        final float fontScale = SwResource.getResource().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
 

@@ -84,7 +84,7 @@ public class BarActivity extends AppCompatActivity {
     }
 
     public void toDrawLayout(View view) {
-        //todo
+        startActivity(new Intent(this, DrawerActivity.class));
     }
 
     public void openNotification(View view) {

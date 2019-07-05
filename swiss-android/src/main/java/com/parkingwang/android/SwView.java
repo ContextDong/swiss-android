@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 /**
  * @author DongMS
- * @date 2019/7/4
+ * @since 2019/7/4
  */
 public final class SwView {
 

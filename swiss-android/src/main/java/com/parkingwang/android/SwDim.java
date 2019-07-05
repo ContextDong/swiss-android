@@ -14,21 +14,21 @@ public class SwDim {
     }
 
     /**
-     * 得到设备屏幕的宽度
+     * @return 得到设备屏幕的宽度
      */
     public static int getScreenWidths() {
         return SwResource.getResource().getDisplayMetrics().widthPixels;
     }
 
     /**
-     * 得到设备屏幕的高度
+     * @return 得到设备屏幕的高度
      */
     public static int getScreenHeights() {
         return SwResource.getResource().getDisplayMetrics().heightPixels;
     }
 
     /**
-     * 获取DisplayMetrics对象
+     * @return 获取DisplayMetrics对象
      *
      * @return
      */
@@ -37,7 +37,7 @@ public class SwDim {
     }
 
     /**
-     * 得到设备屏幕的密度
+     * @return 得到设备屏幕的密度
      */
     public static float getScreenDensity() {
         return getDisplayMetrics().density;

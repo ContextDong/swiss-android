@@ -12,7 +12,7 @@ import android.support.v4.content.res.ResourcesCompat;
 
 /**
  * @author DongMS
- * @date 2019/5/24
+ * @since 2019/5/24
  */
 public final class SwResource {
 
@@ -20,8 +20,7 @@ public final class SwResource {
     }
 
     /**
-     * Resources.getSystem() 可以在任何地方进行使用，但是有一个局限，只能获取系统本身的资源
-     * @return
+     * @return Resources.getSystem() 可以在任何地方进行使用，但是有一个局限，只能获取系统本身的资源
      */
     public static Resources getResource() {
         return SwUtils.getContext().getResources();

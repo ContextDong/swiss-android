@@ -4,7 +4,7 @@ import android.content.Intent;
 
 /**
  * @author DongMS
- * @date 2019/6/10
+ * @since 2019/6/10
  */
 public class ActivityResultInfo {
     public  final  int result;

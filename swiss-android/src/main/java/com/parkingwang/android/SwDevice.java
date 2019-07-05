@@ -70,6 +70,7 @@ public class SwDevice {
 
     /**
      * 判断是否为平板设备
+     * @param context 上下文
      */
     public static boolean isTablet(Context context) {
         if (sIsTabletChecked) {
@@ -81,14 +82,14 @@ public class SwDevice {
     }
 
     /**
-     * 判断是否是flyme系统
+     * @return 判断是否是flyme系统
      */
     public static boolean isFlyme() {
         return !TextUtils.isEmpty(sFlymeVersionName) && sFlymeVersionName.contains(FLYME);
     }
 
     /**
-     * 判断是否是MIUI系统
+     * @return 判断是否是MIUI系统
      */
     public static boolean isMIUI() {
         return !TextUtils.isEmpty(sMiuiVersionName);
@@ -151,14 +152,14 @@ public class SwDevice {
     }
 
     /**
-     * 判断是否为魅族
+     * @return 判断是否为魅族
      */
     public static boolean isMeizu() {
         return isPhone(MEIZUBOARD) || isFlyme();
     }
 
     /**
-     * 判断是否为小米
+     * @return 判断是否为小米
      */
     public static boolean isXiaomi() {
         return Build.BRAND.toLowerCase().contains("xiaomi") || isMIUI();
@@ -166,7 +167,7 @@ public class SwDevice {
 
 
     /**
-     * 判断是否为 ZUK Z1 和 ZTK C2016。
+     * @return 判断是否为 ZUK Z1 和 ZTK C2016。
      * 两台设备的系统虽然为 android 6.0，但不支持状态栏icon颜色改变，因此经常需要对它们进行额外判断。
      */
     public static boolean isZUKZ1() {
@@ -193,7 +194,7 @@ public class SwDevice {
     }
 
     /**
-     * 判断悬浮窗权限（目前主要用户魅族与小米的检测）。
+     * @return 判断悬浮窗权限（目前主要用户魅族与小米的检测）。
      */
     public static boolean isFloatWindowOpAllowed(Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

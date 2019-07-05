@@ -31,7 +31,7 @@ import static android.Manifest.permission.EXPAND_STATUS_BAR;
 
 /**
  * @author DongMS
- * @date 2019/5/27
+ * @since 2019/5/27
  */
 public final class SwBar {
 
@@ -43,9 +43,7 @@ public final class SwBar {
     }
 
     /**
-     * 获取状态栏高度
-     *
-     * @return
+     * @return 获取状态栏高度
      */
     public static int getStatusBarHeight() {
         Resources resources = SwResource.getResource();
@@ -97,18 +95,14 @@ public final class SwBar {
     }
 
     /**
-     * view的marginTop+=状态栏高度
-     *
-     * @param view
+     * @param view 要增加 view的marginTop，view的marginTop+=状态栏高度
      */
     public static void addMarginTopEqualStatusBarHeight(@NonNull View view) {
         setMarginTopEqualStatusBarHeight(view, true);
     }
 
     /**
-     * view的marginTop-=状态栏高度
-     *
-     * @param view
+     * @param view 要减少view的marginTop，view的marginTop-=状态栏高度
      */
     public static void subtractMarginTopEqualStatusBarHeight(@NonNull View view) {
         setMarginTopEqualStatusBarHeight(view, false);
@@ -117,7 +111,7 @@ public final class SwBar {
     /**
      * 改变状态栏字体的颜色
      *
-     * @param activity
+     * @param activity    宿主
      * @param isLightMode true:深色;false:浅色
      */
     public static void setStatusBarLightMode(@NonNull final Activity activity,
@@ -210,9 +204,9 @@ public final class SwBar {
     /**
      * DrawerLayout结合沉浸式
      *
-     * @param drawer
-     * @param fakeStatusBar
-     * @param color
+     * @param drawer        drawerLayout
+     * @param fakeStatusBar 主内容区域填充statusBar的View
+     * @param color         渲染的颜色
      * @param isTop         DrawerLayout是否覆盖状态栏
      */
     public static void setStatusBarColor4Drawer(@NonNull final DrawerLayout drawer,
@@ -313,9 +307,7 @@ public final class SwBar {
     }
 
     /**
-     * 获取底部虚拟导航栏的高度
-     *
-     * @return
+     * @return 获取底部虚拟导航栏的高度
      */
     public static int getNavBarHeight() {
         Resources res = SwResource.getResource();
@@ -338,10 +330,8 @@ public final class SwBar {
     }
 
     /**
-     * 获取底部虚拟导航栏的颜色
-     *
-     * @param activity
-     * @return
+     * @param activity 宿主
+     * @return 获取底部虚拟导航栏的颜色
      */
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     public static int getNavBarColor(@NonNull final Activity activity) {
@@ -353,12 +343,6 @@ public final class SwBar {
         return window.getNavigationBarColor();
     }
 
-    /**
-     * 设置底部虚拟导航栏是否可见
-     *
-     * @param activity
-     * @param isVisible
-     */
     public static void setNavBarVisibility(@NonNull final Activity activity, boolean isVisible) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
         setNavBarVisibility(activity.getWindow(), isVisible);

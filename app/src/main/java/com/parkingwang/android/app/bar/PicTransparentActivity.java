@@ -11,7 +11,7 @@ import com.parkingwang.android.app.R;
 
 /**
  * @author DongMS
- * @date 2019/5/28
+ * @since 2019/5/28
  */
 public class PicTransparentActivity extends AppCompatActivity {
 

@@ -125,6 +125,7 @@ public class SwTime {
      * 判断当前日期是星期几
      *
      * @param strDate 要判断的时间
+     * @param format 线程安全的时间格式化类
      * @return dayForWeek 判断结果   -1 不存在 ,从1到7开始分别表示从星期天到星期六
      */
     public static int stringForWeek(String strDate, SafeSimpleDateFormat format) {
@@ -149,25 +150,12 @@ public class SwTime {
         return c.get(Calendar.DAY_OF_WEEK);
     }
 
-    /**
-     * 是否是当天
-     *
-     * @param time
-     * @param format
-     * @return
-     */
     public static boolean isToday(String time, SafeSimpleDateFormat format) {
         long wee = (System.currentTimeMillis() / DAY) * DAY; //当前凌晨
         long milli = string2Milliseconds(time, format);
         return milli >= wee && milli < wee + DAY;
     }
 
-    /**
-     * 是否是当天
-     *
-     * @param milliSecond
-     * @return
-     */
     public static boolean isToday(long milliSecond) {
         long wee = (System.currentTimeMillis() / DAY) * DAY; //当前凌晨
         return milliSecond >= wee && milliSecond < wee + DAY;

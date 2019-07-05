@@ -13,7 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author DongMS
- * @date 2019/5/24
+ * @since 2019/5/24
  */
 public final class SwUtils {
 
@@ -28,8 +28,7 @@ public final class SwUtils {
 
     /**
      * 必须进行初始化
-     *
-     * @param context
+     * @param context 上下文
      */
     public static void init(@NonNull Context context) {
         sContext = context;

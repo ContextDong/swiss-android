@@ -19,7 +19,7 @@ import com.parkingwang.android.view.SwStateToast;
  * SwToast是一个全局配置的Toast，如果app内部需要不同样式的吐司，每次调用前需要 SwToast.resetToast(); 再配置样式后show()
  *
  * @author DongMS
- * @date 2019/7/5
+ * @since 2019/7/5
  */
 public class ToastActivity extends AppCompatActivity {
     @Override

@@ -19,7 +19,7 @@ import com.parkingwang.android.app.R;
 
 /**
  * @author DongMS
- * @date 2019/5/27
+ * @since 2019/5/27
  */
 public class BarActivity extends AppCompatActivity {
 

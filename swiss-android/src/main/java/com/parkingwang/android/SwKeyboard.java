@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 
 /**
  * @author DongMS
- * @date 2019/5/24
+ * @since 2019/5/24
  */
 public final class SwKeyboard {
 
@@ -84,9 +84,7 @@ public final class SwKeyboard {
     }
 
     /**
-     * 修复软键盘的内存泄漏，activity的onDestroy()回调
-     *
-     * @param activity
+     * @param activity 修复软键盘的内存泄漏，activity的onDestroy()回调
      */
     public static void fixSoftInputLeaks(final Activity activity) {
         if (activity == null) return;

@@ -14,7 +14,7 @@ import java.util.Set;
 
 /**
  * @author DongMS
- * @date 2019/7/4
+ * @since 2019/7/4
  */
 class SwAppLifecycleCallbackImpl implements Application.ActivityLifecycleCallbacks {
 

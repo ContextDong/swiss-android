@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.parkingwang.android.SwActivity;
 import com.parkingwang.android.SwKeyboard;
 import com.parkingwang.android.SwUtils;
 import com.parkingwang.android.helper.KeyboardHelper;
@@ -18,7 +17,7 @@ import com.parkingwang.android.listener.OnAppStatusChangedListener;
 
 /**
  * @author DongMS
- * @date 2019/5/24
+ * @since 2019/5/24
  */
 public class KeyboardActivity extends AppCompatActivity implements KeyboardListener {
 

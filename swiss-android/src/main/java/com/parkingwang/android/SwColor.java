@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 
 /**
  * @author DongMS
- * @date 2019/5/27
+ * @since 2019/5/27
  */
 public final class SwColor {
 

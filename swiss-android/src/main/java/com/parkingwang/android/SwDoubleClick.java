@@ -75,11 +75,6 @@ public class SwDoubleClick {
         this(activity, R.string.sw_double_click_exit);
     }
 
-    /**
-     * 接入Activity的onKeyDown方法
-     * @param keyCode keyCode
-     * @param event event
-     */
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK ) {
             if ( ! mWaitingSecondClick.get()) {

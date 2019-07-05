@@ -14,7 +14,7 @@ import java.lang.ref.WeakReference;
 
 /**
  * @author DongMS
- * @date 2019/5/24
+ * @since 2019/5/24
  */
 public class KeyboardHelper {
 
@@ -31,9 +31,9 @@ public class KeyboardHelper {
     /**
      * 点击editText外部区域隐藏软键盘
      *
-     * @param activity
-     * @param ev
-     * @return false->交给activity处理[super.dispatchTouchEvent(ev)]
+     * @param activity 宿主
+     * @param ev       触摸事件
+     * @return false, 交给activity处理[super.dispatchTouchEvent(ev)]
      */
     public boolean dispatchTouchEvent(Activity activity, MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {

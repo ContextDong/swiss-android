@@ -13,8 +13,8 @@ import android.telephony.TelephonyManager;
 public class SwNetwork {
 
     /**
-     * 判断网络连接是否可用
-     * <p>
+     * @param context 上下文
+     * @return 判断网络连接是否可用
      * 需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}
      */
     public static boolean isNetworkAvailable(Context context) {
@@ -48,7 +48,8 @@ public class SwNetwork {
     }
 
     /**
-     * 判断是否为3G网络
+     * @param context 上下文
+     * @return 判断是否为3G网络
      * 需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}
      */
     public static boolean is3G(Context context) {
@@ -58,7 +59,8 @@ public class SwNetwork {
     }
 
     /**
-     * 判断网络是否是4G
+     * @param context 上下文
+     * @return 判断网络是否是4G
      * 需添加权限 {@code <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>}
      */
     public static boolean is4G(Context context) {

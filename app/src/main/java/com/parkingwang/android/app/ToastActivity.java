@@ -1,5 +1,7 @@
 package com.parkingwang.android.app;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -85,10 +87,18 @@ public class ToastActivity extends AppCompatActivity {
         textView.setPadding(30, 30, 30, 30);
         textView.setBackgroundColor(Color.TRANSPARENT);
         textView.setTextColor(Color.BLUE);
-         //这里传的是sp值，不是px值
+        //这里传的是sp值，不是px值
         textView.setTextSize(20);
         textView.setText("customView");
         SwToast.showCustomLong(textView);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.putExtra("msg", "SwToast");
+        setResult(Activity.RESULT_OK, intent);
+        super.onBackPressed();
     }
 
     private interface Callback {

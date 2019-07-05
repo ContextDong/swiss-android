@@ -1,5 +1,6 @@
 package com.parkingwang.android.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +9,11 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.parkingwang.android.SwDoubleClick;
+import com.parkingwang.android.SwToast;
 import com.parkingwang.android.SwUtils;
 import com.parkingwang.android.app.bar.BarActivity;
 import com.parkingwang.android.listener.OnAppStatusChangedListener;
+import com.parkingwang.android.onresult.SwOnResult;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toastUtil(View view) {
-        startActivity(new Intent(this, ToastActivity.class));
+        new SwOnResult(this).startForResult(ToastActivity.class, (resultCode, data) -> {
+            if (resultCode == Activity.RESULT_OK) {
+                SwToast.showShort(data.getStringExtra("msg"));
+            }
+        });
     }
 
     @Override

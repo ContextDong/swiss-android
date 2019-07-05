@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="com.parkingwang.android.app.ToastActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="normal"
+        android:text="普通提示"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="style"
+        android:text="提示样式"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="location"
+        android:text="提示位置"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="bgDrawable"
+        android:text="提示背景图片"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="customView"
+        android:text="自定义提示布局"/>
+
+    <Button
+        android:id="@+id/success_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="success"
+        android:text="成功提示"/>
+
+    <Button
+        android:id="@+id/warn_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="warn"
+        android:text="警告提示"
+        />
+
+    <Button
+        android:id="@+id/error_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="error"
+        android:text="错误提示"
+        />
+</LinearLayout>

@@ -13,6 +13,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //使用前必须初始化
         SwUtils.init(this);
     }
 }

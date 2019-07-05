@@ -38,8 +38,6 @@ public class SwToast {
 
     private static IToast iToast;
     private static int sGravity = -1;
-    private static int sXOffset = -1;
-    private static int sYOffset = -1;
     private static int sBgColor = COLOR_DEFAULT;
     private static int sBgResource = -1;
     private static int sMsgColor = COLOR_DEFAULT;
@@ -48,15 +46,8 @@ public class SwToast {
     private SwToast() {
     }
 
-
-    public static void setGravity(final int gravity, final int xOffset, final int yOffset) {
-        sGravity = gravity;
-        sXOffset = xOffset;
-        sYOffset = yOffset;
-    }
-
     public static void setGravity(final int gravity) {
-        setGravity(gravity, 0, 0);
+        sGravity = gravity;
     }
 
     public static void setBgColor(@ColorInt final int backgroundColor) {
@@ -176,8 +167,8 @@ public class SwToast {
             if (sMsgTextSize != -1) {
                 tvMessage.setTextSize(sMsgTextSize);
             }
-            if (sGravity != -1 || sXOffset != -1 || sYOffset != -1) {
-                iToast.setGravity(sGravity, sXOffset, sYOffset);
+            if (sGravity != -1) {
+                iToast.setGravity(sGravity, 0, 0);
             }
             setBg(tvMessage);
             iToast.show();
@@ -190,8 +181,8 @@ public class SwToast {
             iToast = ToastFactory.newToast(SwUtils.getContext());
             iToast.setView(view);
             iToast.setDuration(duration);
-            if (sGravity != -1 || sXOffset != -1 || sYOffset != -1) {
-                iToast.setGravity(sGravity, sXOffset, sYOffset);
+            if (sGravity != -1) {
+                iToast.setGravity(sGravity, 0, 0);
             }
             setBg();
             iToast.show();
@@ -239,6 +230,14 @@ public class SwToast {
                 toastView.setBackgroundColor(sBgColor);
             }
         }
+    }
+
+    public static void resetToast() {
+        sGravity = -1;
+        sMsgTextSize = -1;
+        sMsgColor = COLOR_DEFAULT;
+        sBgColor = COLOR_DEFAULT;
+        sBgResource = -1;
     }
 
     static class ToastFactory {

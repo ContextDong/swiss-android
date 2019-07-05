@@ -3,12 +3,12 @@ package com.parkingwang.android.view;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.os.Handler;
-import android.os.Looper;
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.TextView;
 
 import com.parkingwang.android.R;
+import com.parkingwang.android.SwUtils;
 
 /**
  * @author YOOJIA.CHEN (yoojia.chen@gmail.com)
@@ -16,79 +16,63 @@ import com.parkingwang.android.R;
  */
 public class SwLoading extends Dialog {
 
-    private final Handler mHandler;
     private final TextView mMessage;
 
     private CharSequence mMessageText;
+
     private int mMessageId;
 
-    private final Runnable mShowDelayTask = new Runnable() {
-        @Override
-        public void run() {
-            showOnMainThread();
-        }
-    };
+    private final Runnable mShowDelayTask = this::showOnMainThread;
 
-    private final Runnable mHideDelayTask = new Runnable() {
-        @Override
-        public void run() {
-            SwLoading.this.hide();
-        }
-    };
+    private final Runnable mHideDelayTask = SwLoading.this::hide;
 
-    private final Runnable mDismissDelayTask = new Runnable() {
-        @Override
-        public void run() {
-            SwLoading.this.dismiss();
-        }
-    };
+    private final Runnable mDismissDelayTask = SwLoading.this::dismiss;
 
     public SwLoading(Context context) {
         super(context, R.style.SwissProgress);
         setContentView(R.layout.sw_progress);
         setCancelable(false);
-        mHandler = new Handler();
         mMessage = findViewById(R.id.message);
     }
 
-    public SwLoading setMessage(int msg) {
+    public SwLoading setMessage(@StringRes final int msg) {
         mMessageId = msg;
         return this;
     }
 
-    public SwLoading setMessage(CharSequence msg) {
+    public SwLoading setMessage(final CharSequence msg) {
         mMessageText = msg;
         return this;
     }
 
     @Override
-    public void setTitle(CharSequence title) {
+    public void setTitle(final CharSequence title) {
         setMessage(title);
     }
 
     @Override
-    public void setTitle(int titleId) {
+    public void setTitle(@StringRes final int titleId) {
         setMessage(titleId);
     }
 
-    public void showDelay(long delayMillis) {
-        mHandler.postDelayed(mShowDelayTask, delayMillis);
+    public void showDelay(final long delayMillis) {
+        SwUtils.runOnUiThreadDelayed(mShowDelayTask, delayMillis);
     }
 
-    public void hideDelay(long delayMillis) {
-        mHandler.postDelayed(mHideDelayTask, delayMillis);
+    public void hideDelay(final long delayMillis) {
+        SwUtils.runOnUiThreadDelayed(mHideDelayTask, delayMillis);
     }
 
-    public void dismissDelay(long delayMillis) {
-        mHandler.postDelayed(mDismissDelayTask, delayMillis);
+    public void dismissDelay(final long delayMillis) {
+        SwUtils.runOnUiThreadDelayed(mDismissDelayTask, delayMillis);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mHandler.removeCallbacks(mShowDelayTask);
-        mHandler.removeCallbacks(mHideDelayTask);
-        mHandler.removeCallbacks(mDismissDelayTask);
+        SwUtils.MAIN_HANDLER.removeCallbacks(mShowDelayTask);
+        SwUtils.MAIN_HANDLER.removeCallbacks(mHideDelayTask);
+        SwUtils.MAIN_HANDLER.removeCallbacks(mDismissDelayTask);
     }
 
     /**
@@ -96,16 +80,7 @@ public class SwLoading extends Dialog {
      */
     @Override
     public void show() {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
-            showOnMainThread();
-        } else {
-            mHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    showOnMainThread();
-                }
-            });
-        }
+        SwUtils.runOnUiThread(this::showOnMainThread);
     }
 
     private void showOnMainThread() {
@@ -119,7 +94,7 @@ public class SwLoading extends Dialog {
         super.show();
     }
 
-    public static SwLoading create(Activity context) {
+    public static SwLoading create(final Activity context) {
         return new SwLoading(context);
     }
 

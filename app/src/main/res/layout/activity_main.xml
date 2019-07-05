@@ -19,29 +19,10 @@
         android:layout_height="wrap_content"
         android:onClick="barUtil"
         android:text="沉浸式设计"/>
-
     <Button
-        android:id="@+id/success_tip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="success"
-        android:text="成功提示"/>
-
-    <Button
-        android:id="@+id/warn_tip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="warn"
-        android:text="警告提示"
-    />
-
-    <Button
-        android:id="@+id/error_tip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="error"
-        android:text="错误提示"
-    />
-
+        android:onClick="toastUtil"
+        android:text="Toast"/>
 
 </LinearLayout>

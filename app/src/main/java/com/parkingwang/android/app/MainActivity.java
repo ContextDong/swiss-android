@@ -6,14 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 
 import com.parkingwang.android.SwDoubleClick;
 import com.parkingwang.android.SwUtils;
 import com.parkingwang.android.app.bar.BarActivity;
 import com.parkingwang.android.listener.OnAppStatusChangedListener;
-import com.parkingwang.android.view.SwLoading;
-import com.parkingwang.android.view.SwStateToast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,50 +46,6 @@ public class MainActivity extends AppCompatActivity {
         SwUtils.unregisterAppStatusChangedListener(this);
     }
 
-    public void success(final View view) {
-        loadingAfter(view, new Callback() {
-            @Override
-            public void function() {
-                SwStateToast.success(getApplicationContext()).show(((Button) view).getText().toString());
-            }
-        });
-    }
-
-    public void warn(final View view) {
-        loadingAfter(view, new Callback() {
-            @Override
-            public void function() {
-                SwStateToast.warning(getApplicationContext()).show(((Button) view).getText().toString());
-            }
-        });
-    }
-
-
-    public void error(final View view) {
-        loadingAfter(view, new Callback() {
-            @Override
-            public void function() {
-                SwStateToast.failed(getApplicationContext()).show(((Button) view).getText().toString());
-            }
-        });
-    }
-
-    private void loadingAfter(final View view, final Callback callback) {
-        final SwLoading loading = loading();
-        view.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                loading.hide();
-                callback.function();
-            }
-        }, 1000);
-    }
-
-    private SwLoading loading() {
-        SwLoading loading = SwLoading.create(this);
-        loading.show();
-        return loading;
-    }
 
     public void keyboardUtil(final View view) {
         startActivity(new Intent(this, KeyboardActivity.class));
@@ -102,16 +55,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, BarActivity.class));
     }
 
+    public void toastUtil(View view) {
+        startActivity(new Intent(this, ToastActivity.class));
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return mDoubleClick.onKeyDown(keyCode, event) ||
                 super.onKeyDown(keyCode, event);
     }
-
-
-    private interface Callback {
-        void function();
-    }
-
 }

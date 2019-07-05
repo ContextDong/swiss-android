@@ -1,18 +1,17 @@
 package com.parkingwang.android.view;
 
-import android.content.Context;
-import android.content.res.Resources;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextUtils;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parkingwang.android.R;
+import com.parkingwang.android.SwResource;
+import com.parkingwang.android.SwToast;
+import com.parkingwang.android.SwUtils;
+import com.parkingwang.android.SwView;
 
 /**
  * @author YOOJIA.CHEN (yoojia.chen@gmail.com)
@@ -20,24 +19,17 @@ import com.parkingwang.android.R;
  */
 public class SwStateToast {
 
-    private final Toast mToast;
+    private final View mRootView;
     private final ImageView mIcon;
     private final TextView mMessage;
-    private final Resources mRes;
 
-    private final Handler mHandler;
     private Style mStyle;
 
-    public SwStateToast(Context context, Style style) {
+    public SwStateToast(Style style) {
         mStyle = style;
-        mToast = new Toast(context);
-        mRes = context.getResources();
-        mHandler = new Handler(Looper.getMainLooper());
-        final View view = LayoutInflater.from(context)
-                .inflate(R.layout.sw_toast, null);
-        mToast.setView(view);
-        mIcon = (ImageView) view.findViewById(R.id.icon);
-        mMessage = (TextView) view.findViewById(R.id.message);
+        mRootView = SwView.inflate(R.layout.sw_toast);
+        mIcon = mRootView.findViewById(R.id.icon);
+        mMessage = mRootView.findViewById(R.id.message);
     }
 
     /**
@@ -74,7 +66,7 @@ public class SwStateToast {
      * @param message 提示信息内容
      */
     public void showLong(int message) {
-        showLong(mRes.getString(message));
+        showLong(SwResource.getString(message));
     }
 
     /**
@@ -102,72 +94,64 @@ public class SwStateToast {
      * @param message 提示信息内容
      */
     public void show(int message) {
-        show(mRes.getString(message));
+        show(SwResource.getString(message));
     }
 
     /**
      * 创建一个无图标的NextToast
      *
-     * @param context Context
      * @return NextToast
      */
-    public static SwStateToast tip(Context context) {
-        return new SwStateToast(context, Style.TIP);
+    public static SwStateToast tip() {
+        return new SwStateToast(Style.TIP);
     }
 
     /**
      * 创建一个对号图标的NextToast
      *
-     * @param context Context
      * @return NextToast
      */
-    public static SwStateToast success(Context context) {
-        return new SwStateToast(context, Style.SUCCESS);
+    public static SwStateToast success() {
+        return new SwStateToast(Style.SUCCESS);
     }
 
     /**
      * 创建一个叉号图标的NextToast
      *
-     * @param context Context
      * @return NextToast
      */
-    public static SwStateToast failed(Context context) {
-        return new SwStateToast(context, Style.FAILED);
+    public static SwStateToast failed() {
+        return new SwStateToast(Style.FAILED);
     }
 
     /**
      * 创建一个叹号图标的NextToast
      *
-     * @param context Context
      * @return NextToast
      */
-    public static SwStateToast warning(Context context) {
-        return new SwStateToast(context, Style.WARNING);
+    public static SwStateToast warning() {
+        return new SwStateToast(Style.WARNING);
     }
 
     private void show(final int iconResId, final String message, final int duration) {
-        final Runnable task = new Runnable() {
-            @Override
-            public void run() {
-                if (iconResId != 0) {
-                    mIcon.setVisibility(View.VISIBLE);
-                    mIcon.setImageResource(iconResId);
-                } else {
-                    mIcon.setVisibility(View.GONE);
-                }
-                if (!TextUtils.isEmpty(message)) {
-                    mMessage.setText(message);
-                }
-                mToast.setDuration(duration);
-                mToast.setGravity(Gravity.CENTER, 0, 0);
-                mToast.show();
-            }
-        };
-        if (Looper.getMainLooper() == Looper.myLooper()) {
-            task.run();
+        SwToast.setGravity(Gravity.CENTER);
+        if (duration == Toast.LENGTH_SHORT) {
+            SwToast.showCustomShort(mRootView);
         } else {
-            mHandler.post(task);
+            SwToast.showCustomLong(mRootView);
         }
+        SwUtils.runOnUiThread(() -> {
+            if (iconResId != 0) {
+                mIcon.setVisibility(View.VISIBLE);
+                mIcon.setImageResource(iconResId);
+            } else {
+                mIcon.setVisibility(View.GONE);
+            }
+            if (!TextUtils.isEmpty(message)) {
+                mMessage.setText(message);
+            }
+            SwToast.resetToast();
+        });
     }
 
     public enum Style {

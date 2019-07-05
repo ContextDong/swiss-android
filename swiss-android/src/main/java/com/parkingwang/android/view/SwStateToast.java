@@ -18,7 +18,7 @@ import com.parkingwang.android.R;
  * @author YOOJIA.CHEN (yoojia.chen@gmail.com)
  * @since 1.0
  */
-public class SwToast {
+public class SwStateToast {
 
     private final Toast mToast;
     private final ImageView mIcon;
@@ -28,7 +28,7 @@ public class SwToast {
     private final Handler mHandler;
     private Style mStyle;
 
-    public SwToast(Context context, Style style) {
+    public SwStateToast(Context context, Style style) {
         mStyle = style;
         mToast = new Toast(context);
         mRes = context.getResources();
@@ -111,8 +111,8 @@ public class SwToast {
      * @param context Context
      * @return NextToast
      */
-    public static SwToast tip(Context context) {
-        return new SwToast(context, Style.TIP);
+    public static SwStateToast tip(Context context) {
+        return new SwStateToast(context, Style.TIP);
     }
 
     /**
@@ -121,8 +121,8 @@ public class SwToast {
      * @param context Context
      * @return NextToast
      */
-    public static SwToast success(Context context) {
-        return new SwToast(context, Style.SUCCESS);
+    public static SwStateToast success(Context context) {
+        return new SwStateToast(context, Style.SUCCESS);
     }
 
     /**
@@ -131,8 +131,8 @@ public class SwToast {
      * @param context Context
      * @return NextToast
      */
-    public static SwToast failed(Context context) {
-        return new SwToast(context, Style.FAILED);
+    public static SwStateToast failed(Context context) {
+        return new SwStateToast(context, Style.FAILED);
     }
 
     /**
@@ -141,8 +141,8 @@ public class SwToast {
      * @param context Context
      * @return NextToast
      */
-    public static SwToast warning(Context context) {
-        return new SwToast(context, Style.WARNING);
+    public static SwStateToast warning(Context context) {
+        return new SwStateToast(context, Style.WARNING);
     }
 
     private void show(final int iconResId, final String message, final int duration) {

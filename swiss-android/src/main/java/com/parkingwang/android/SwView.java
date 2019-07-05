@@ -10,7 +10,7 @@ import android.view.ViewGroup;
  * @author DongMS
  * @date 2019/7/4
  */
-public class SwView {
+public final class SwView {
 
     private SwView() {
     }

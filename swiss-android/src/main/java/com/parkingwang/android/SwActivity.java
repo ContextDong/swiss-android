@@ -16,7 +16,7 @@ import java.util.Map;
  * @author DongMS
  * @date 2019/7/5
  */
-public class SwActivity {
+public final class SwActivity {
 
     static final LinkedList<Activity> ACTIVITY_LIST = new LinkedList<>();
 

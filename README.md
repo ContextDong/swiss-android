@@ -16,7 +16,7 @@
 
 ### SwBar - 沉浸式设计
 
-```java
+```
     //设置状态栏颜色
     SwBar.setStatusBarColor(activity, statusBarColor);
 
@@ -35,7 +35,7 @@
 
 ###  SwKeyboard - 系统键盘工具类
 
-```java
+```
     //隐藏键盘
     void hideSoftInput(final Activity activity)
 
@@ -64,7 +64,7 @@
 
 ### SwResource - 更方便地获取资源文件
 
-```java
+```
     int getColor(@ColorRes int colorResId)
 
     String getString(@StringRes int strResId)
@@ -76,7 +76,7 @@
 
 ### SwOnResult - 更友好地处理onActivityResult回调
 
-```java
+```
     new SwOnResult(this).startForResult(ToastActivity.class, (resultCode, data) -> {
         if (resultCode == Activity.RESULT_OK) {
             SwToast.showShort(data.getStringExtra("msg"));
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
 ### SwLoading - 一款Loading弹窗口组件
 
-```java
+```
     SwLoading.create(context).show();
 ```
 

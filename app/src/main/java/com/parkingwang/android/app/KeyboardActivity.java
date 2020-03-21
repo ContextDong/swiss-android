@@ -93,4 +93,5 @@ public class KeyboardActivity extends AppCompatActivity implements KeyboardListe
         super.onDestroy();
         SwUtils.unregisterAppStatusChangedListener(this);
     }
+
 }

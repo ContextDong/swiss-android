@@ -1,6 +1,7 @@
 package com.parkingwang.android.app;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -23,6 +24,7 @@ public class KeyboardActivity extends AppCompatActivity implements KeyboardListe
 
     private EditText mEtNoHide;
     private EditText mEtHide;
+    private EditText mEtHide1;
     private Button mBtnTest;
     private KeyboardHelper mKeyboardHelper;
 
@@ -45,14 +47,21 @@ public class KeyboardActivity extends AppCompatActivity implements KeyboardListe
         setContentView(R.layout.activity_keyboard);
         mEtNoHide = findViewById(R.id.et_no_hide);
         mEtHide = findViewById(R.id.et_hide);
+        mEtHide1 = findViewById(R.id.et_hide1);
         mBtnTest = findViewById(R.id.btn_test);
         mKeyboardHelper = KeyboardHelper.newInstance(this);
+    }
+
+    @NonNull
+    @Override
+    public View[] allEditTextView() {
+        return new View[]{mEtHide, mEtHide1, mEtNoHide};
     }
 
     @Nullable
     @Override
     public int[] hideSoftByEditViewIds() {
-        return new int[]{R.id.et_hide};
+        return new int[]{R.id.et_hide, R.id.et_hide1};
     }
 
     @Nullable
@@ -84,4 +93,5 @@ public class KeyboardActivity extends AppCompatActivity implements KeyboardListe
         super.onDestroy();
         SwUtils.unregisterAppStatusChangedListener(this);
     }
+
 }

@@ -46,7 +46,32 @@
     void fixSoftInputLeaks(final Activity activity)
 
     //另外，提供点击外部区域隐藏键盘的方法
-    1.KeyboardActivity extends AppCompatActivity implements KeyboardListener
+    1.public class KeyboardActivity extends AppCompatActivity implements KeyboardListener{
+    
+        @Override
+        protected void onCreate(@Nullable Bundle savedInstanceState) {
+            mKeyboardHelper = KeyboardHelper.newInstance(this);
+        }
+        
+        @NonNull
+        @Override
+        public View[] allEditTextView() {
+            return new View[0];
+        }
+    
+        @Nullable
+        @Override
+        public int[] hideSoftByEditViewIds() {
+            return new int[0];
+        }
+    
+        @Nullable
+        @Override
+        public View[] filterViewByIds() {
+            return new View[0];
+        }   
+        
+    }
 
     2.@Override
     public boolean dispatchTouchEvent(MotionEvent event) {
@@ -128,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
 ```gradle
 dependencies {
-    implementation 'com.cherry.tools:swiss-android:1.0.0'
+    implementation 'com.cherry.tools:swiss-android:1.0.1'
 }
 ```
 

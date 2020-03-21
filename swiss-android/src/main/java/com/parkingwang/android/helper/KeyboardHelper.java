@@ -7,8 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
-import com.parkingwang.android.listener.KeyboardListener;
 import com.parkingwang.android.SwKeyboard;
+import com.parkingwang.android.listener.KeyboardListener;
 
 import java.lang.ref.WeakReference;
 
@@ -48,6 +48,9 @@ public class KeyboardHelper {
                 return false;
             }
             if (listener.hideSoftByEditViewIds().length == 0) {
+                return false;
+            }
+            if (isTouchView(listener.allEditTextView(), ev)) {
                 return false;
             }
             View view = activity.getCurrentFocus();

@@ -35,13 +35,20 @@
         />
 
     <EditText
-        android:id="@+id/et_no_hide"
-        android:hint="点击外部区域不隐藏软键盘"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <EditText
         android:id="@+id/et_hide"
         android:hint="点击外部区域隐藏软键盘"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/et_hide1"
+        android:hint="点击外部区域隐藏软键盘"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/et_no_hide"
+        android:hint="点击外部区域不隐藏软键盘"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

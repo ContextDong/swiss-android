@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
 ```gradle
 dependencies {
-    implementation 'com.cherry.tools:swiss-android:1.0.1'
+    implementation 'com.cherry.tools:swiss-android:1.0.2'
 }
 ```
 

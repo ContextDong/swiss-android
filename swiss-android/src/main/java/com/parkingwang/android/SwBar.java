@@ -24,7 +24,6 @@ import android.view.ViewGroup.MarginLayoutParams;
 import android.view.Window;
 import android.view.WindowManager;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import static android.Manifest.permission.EXPAND_STATUS_BAR;
@@ -120,22 +119,16 @@ public final class SwBar {
     }
 
     public static void setStatusBarLightMode(@NonNull final Window window, final boolean isLightMode) {
-        if (SwDevice.isXiaomi()) {
-            setXiaomiStatusBar(window, isLightMode);
-        } else if (SwDevice.isMeizu()) {
-            setMeizuStatusBar(window, isLightMode);
-        } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                View decorView = window.getDecorView();
-                if (decorView != null) {
-                    int vis = decorView.getSystemUiVisibility();
-                    if (isLightMode) {
-                        vis |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-                    } else {
-                        vis &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-                    }
-                    decorView.setSystemUiVisibility(vis);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decorView = window.getDecorView();
+            if (decorView != null) {
+                int vis = decorView.getSystemUiVisibility();
+                if (isLightMode) {
+                    vis |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                } else {
+                    vis &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
                 }
+                decorView.setSystemUiVisibility(vis);
             }
         }
     }
@@ -373,41 +366,4 @@ public final class SwBar {
             decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | uiOptions);
         }
     }
-
-    private static void setXiaomiStatusBar(Window window, boolean isLightStatusBar) {
-        Class<? extends Window> clazz = window.getClass();
-        try {
-            Class<?> layoutParams = Class.forName("android.view.MiuiWindowManager$LayoutParams");
-            Field field = layoutParams.getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
-            int darkModeFlag = field.getInt(layoutParams);
-            Method extraFlagField = clazz.getMethod("setExtraFlags", int.class, int.class);
-            extraFlagField.invoke(window, isLightStatusBar ? darkModeFlag : 0, darkModeFlag);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void setMeizuStatusBar(Window window, boolean isLightStatusBar) {
-        WindowManager.LayoutParams params = window.getAttributes();
-        try {
-            Field darkFlag = WindowManager.LayoutParams.class.getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON");
-            Field meizuFlags = WindowManager.LayoutParams.class.getDeclaredField("meizuFlags");
-            darkFlag.setAccessible(true);
-            meizuFlags.setAccessible(true);
-            int bit = darkFlag.getInt(null);
-            int value = meizuFlags.getInt(params);
-            if (isLightStatusBar) {
-                value |= bit;
-            } else {
-                value &= bit;
-            }
-            meizuFlags.setInt(params, value);
-            window.setAttributes(params);
-            darkFlag.setAccessible(false);
-            meizuFlags.setAccessible(false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }
